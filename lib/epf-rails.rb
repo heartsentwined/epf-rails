@@ -9,8 +9,12 @@ module Epf
       initializer 'epf.setup-vendor', :group => :all do |app|
         app.assets.append_path \
           File.expand_path('../', ::Epf::Source.bundled_path)
-        app.assets.append_path \
-          File.expand_path('../', ::Epf::Source.bundled_map_path)
+
+        # conditional for BC-compatible with pre-source-map versions
+        if ::Epf::Source.respond_to?(:bundled_map_path)
+          app.assets.append_path \
+            File.expand_path('../', ::Epf::Source.bundled_map_path)
+        end
       end
     end
   end
