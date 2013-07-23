@@ -9,6 +9,8 @@ module Epf
       initializer 'epf.setup-vendor', :group => :all do |app|
         app.assets.append_path \
           File.expand_path('../', ::Epf::Source.bundled_path)
+        app.assets.append_path \
+          File.expand_path('../', ::Epf::Source.bundled_map_path)
       end
     end
   end
